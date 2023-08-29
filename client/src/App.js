@@ -1,9 +1,12 @@
 import './index.css'
+import Header from './components/Header.js'
+
 function App() {
   return (
-    <div className="text-center	">
-      <h1 className="text-rose-800 text-7xl">My Web</h1>
+    <div>
+      <Header/>
     </div>
+    
   );
 }
 

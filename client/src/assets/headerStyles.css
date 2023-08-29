@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navlink :hover {
+    background-color: rgb(174, 248, 255)
+}
+.navlink{
+    display: flex;
+    align-items: center;
+}
+svg {
+    display: initial;
+ }
+ 
+.dang-tin{
+    background-color: #01d475;
+}
