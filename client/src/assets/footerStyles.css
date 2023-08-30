@@ -1,0 +1,19 @@
+.footer-container {
+    width: 100%;
+    display: flex;
+    height: 300px;
+    background-color: #0088b2;
+}
+
+.about {
+    width: 30%;
+    color: white;
+}
+.doccument {
+    width: 30%;
+    color: white;
+}
+.nav-bottom {
+    width: 30%;
+    color: white;
+}

@@ -2,16 +2,8 @@ import Header from "../components/Header";
 import "../assets/loginStyles.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { Footer } from "../components/Footer";
 function Login() {
-//   const input = document.querySelector(".input-pass");
-//   const eyeOpen = document.querySelector(".eye-open");
-//   const eyeClose = document.querySelector(".eye-close");
-//   console.log(eyeClose);
-
-//   eyeClose.addEventListener("click", function(){
-//     eyeOpen.classList.remove("hidden");
-//     eyeClose.classList.add("hidden");
-//   });
  
     const [show, setShow] = useState(false);
     const handleShowPass = () => {
@@ -19,8 +11,9 @@ function Login() {
     }
 
   return (
-    <div>
-      <Header />
+    <>
+       <div className="login-bg">   
+        <Header />
       <div className="login-container shadow-2xl rounded-lg">
         <div className="bg-login">
           <div className="login-form items-center">
@@ -101,7 +94,10 @@ function Login() {
           </div>
         </div>
       </div>
-    </div>
+    </div>   
+    <Footer/>
+    </>
+    
   );
 }
 export default Login;
