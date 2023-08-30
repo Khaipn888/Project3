@@ -16,3 +16,6 @@ svg {
 .dang-tin{
     background-color: #01d475;
 }
+.dang-tin :hover {
+    background-color: red;
+}

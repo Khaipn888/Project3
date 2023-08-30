@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login-container {
+    max-width: 500px;
+    height: 400px;
+    margin: 30px auto;
+    background-color: rgb(248, 246, 246);
+    border: 0.5px solid rgb(0, 0, 0);
+    box-shadow: 10px;
+    position: relative;
+}
+
+.login-form {
+    display: block;
+    margin: auto 20px;
+    width: auto;
+   
+}
+
+.login-header {
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    text-align: center;
+    padding: 20px auto;
+    margin: 20px auto;
+    font-size: 30px;
+}
+.eye {
+    width: 20px;
+    position: absolute;
+    right: 30px;
+    top: 47%;
+    cursor: pointer;
+}
+
+
+.input {
+    width: 100%;
+    margin-bottom: 10px;
+    height: 40px;
+    background-color: rgb(214, 212, 212);
+    padding: 5px 15px;
+    border: 1px solid rgb(214, 212, 212) ;
+}
+ .input :focus{
+    border-color: blue!important;
+ }
+
+button {
+    background-color: rgb(146, 231, 248)!important;
+    color: black;
+    width: 60%;
+    margin: 30px auto;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.button-login :hover {
+    background-color: #fb0000;
+}
+label {
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.fogot-pass {
+    margin: 5px;
+}
+.input-pass {
+    position: relative;
+
+}
+.password {
+    position: relative;
+}
+.hidden {
+    display: none;
+}
