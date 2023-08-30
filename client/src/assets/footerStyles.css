@@ -1,19 +1,7 @@
-.footer-container {
-    width: 100%;
-    display: flex;
-    height: 300px;
-    background-color: #0088b2;
+h3{
+    margin-bottom: 20px;
 }
-
-.about {
-    width: 30%;
-    color: white;
-}
-.doccument {
-    width: 30%;
-    color: white;
-}
-.nav-bottom {
-    width: 30%;
-    color: white;
+ion-icon {
+    font-size: 30px;
+    margin-right: 20px;;
 }
