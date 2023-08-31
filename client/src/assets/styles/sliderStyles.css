@@ -1,0 +1,22 @@
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+
+
+.img-slider{
+    height: 400px;
+    width: 100%;
+}
+.slick-arrow {
+    background-color: #ffffff00 !important;
+}
+.slick-prev ::before {
+    font-size: 25px !important;
+}
+.slick-prev {
+    z-index: 1;
+    left: 10px;
+}
+.slick-next {
+    z-index: 1;
+    right: 10px;
+}

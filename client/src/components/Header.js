@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { Link , NavLink} from 'react-router-dom'
-import logo_test from '../assets/logo_test.png'
-import '../assets/headerStyles.css'
+import logo from '../assets/images/logo1.png'
+import '../assets/styles/headerStyles.css'
 
 const navigation = [
   { name: 'Tìm Trọ', href: '/FindHostel', current: true },
@@ -22,7 +22,7 @@ export default function Header() {
                   <Link  to='/'> 
                     <img
                       className="h-8 w-auto"
-                      src={logo_test}
+                      src={logo}
                       alt="Your Company"
 
                     />

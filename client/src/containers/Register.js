@@ -1,6 +1,5 @@
 import Header from "../components/Header";
-import "../assets/loginStyles.css";
-import { NavLink } from "react-router-dom";
+import "../assets/styles/loginStyles.css";
 import { useState } from "react";
 import { Footer } from "../components/Footer";
 function Register() {

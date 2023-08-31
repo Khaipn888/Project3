@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import '../assets/styles/backToTopStyles.css'
 
 
 function BackToTopButton(){
@@ -6,31 +7,28 @@ function BackToTopButton(){
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            if(window.scollY > 10){
+            if(window.scrollY > 10){
                setBackToTop(true);
+               console.log("scroll > 10px")
             }else{
                 setBackToTop(false);
+                console.log("not yet scroll > 10px")
             }
         })
     }, [])
 
     const scrollUp = () => {
+
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         })
+        console.log("ok")
     }
     return(
         <div>
-            {backToTop && (<button style={{
-                position: "fixed",
-                bottom: "50px",
-                right: "50px",
-                width: "40px",
-                height: "40px",
-                fontSize: "40px",
-                backgroundColor: "grey"
-            }} onClick={scrollUp}>^</button>)}
+            {backToTop && (<button className="button-btt" onClick={scrollUp}>
+            <span className="up">^</span> </button>)}      
         </div>
     )
 }

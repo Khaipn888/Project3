@@ -1,8 +1,9 @@
 import Header from "../components/Header";
-import "../assets/loginStyles.css";
+import "../assets/styles/loginStyles.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Footer } from "../components/Footer";
+import BackToTopButton from "../components/BackToTopButton";
 function Login() {
  
     const [show, setShow] = useState(false);
@@ -81,8 +82,8 @@ function Login() {
                 </label>
               </div>
               <div className="fogot-pass relative flex items-center justify-between">
-                <NavLink to="/">Quên mật khẩu?</NavLink>
-                <NavLink to="/Register">Chưa có tài khoản?</NavLink>
+                <NavLink to="/"><span className=" font-medium hover:text-blue-800 ">Quên mật khẩu?</span></NavLink>
+                <NavLink to="/Register"><span className=" font-medium hover:text-blue-800">Chưa có tài khoản?</span></NavLink>
               </div>
               <button
                 type="submit"
@@ -94,7 +95,8 @@ function Login() {
           </div>
         </div>
       </div>
-    </div>   
+    </div>  
+    <BackToTopButton/> 
     <Footer/>
     </>
     
