@@ -70,22 +70,22 @@ export function Footer() {
           <h3 className="text-xl font-semibold mb-3">Hỗ trợ</h3>
           <ul>
             <li>
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="#" className="text-gray-400 hover:text-white">
                 Chính sách bảo mật
               </a>
             </li>
             <li>
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="#" className="text-gray-400 hover:text-white">
                 Hướng dẫn sử dụng
               </a>
             </li>
             <li>
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="#" className="text-gray-400 hover:text-white">
                 Quy chế hoạt động
               </a>
             </li>
             <li>
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="#" className="text-gray-400 hover:text-white">
                 Bảng giá dịch vụ
               </a>
             </li>
@@ -95,32 +95,32 @@ export function Footer() {
           <h3 className="text-xl font-semibold mb-3">Bạn Cần</h3>
           <ul>
             <li>
-              <NavLink to="/" className="text-gray-300 hover:text-white">
+              <NavLink to="/" className="text-gray-400 hover:text-white">
                 Quay lại trang chủ
               </NavLink>
             </li>
             <li>
-              <NavLink to="/FindHostel" className="text-gray-300 hover:text-white">
+              <NavLink to="/FindHostel" className="text-gray-400 hover:text-white">
                 Tìm trọ
               </NavLink>
             </li>
             <li>
-              <NavLink to="/FindRoomMate" className="text-gray-300 hover:text-white">
+              <NavLink to="/FindRoomMate" className="text-gray-400 hover:text-white">
                 Tìm người ở ghép
               </NavLink>
             </li>
             <li>
-              <NavLink to="/Neccessary" className="text-gray-300 hover:text-white">
+              <NavLink to="/Neccessary" className="text-gray-400 hover:text-white">
                 Tìm mua đồ pass lại
               </NavLink>
             </li>
             <li>
-              <NavLink to="/Forum" className="text-gray-300 hover:text-white">
+              <NavLink to="/Forum" className="text-gray-400 hover:text-white ">
                 Tham gia diễn đàn trao đổi
               </NavLink>
             </li>
             <li>
-              <NavLink to="/Post" className="text-gray-300 hover:text-white">
+              <NavLink to="/Post" className="text-gray-400 hover:text-white">
                 Đăng tin
               </NavLink>
             </li>

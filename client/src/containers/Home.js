@@ -3,6 +3,7 @@ import { Footer } from "../components/Footer";
 import Header from "../components/Header";
 import SlickSlider from "../components/SlickSlider";
 import '../assets/styles/homeStyles.css'
+import PostInstance from "../components/PostInstance";
 function Home() {
     return (
         <div>
@@ -11,7 +12,7 @@ function Home() {
                 <SlickSlider/>
             </div>
             <div className="text-4xl text-center mt-24 h-96">
-                This is Home page
+                <PostInstance />
             </div>
             <BackToTopButton/> 
             <Footer/>
