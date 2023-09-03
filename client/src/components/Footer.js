@@ -3,7 +3,7 @@ import "../assets/styles/footerStyles.css";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-10">
+    <footer className="bg-gray-800 text-white py-10 ">
       <div className="max-w-6xl mx-auto flex justify-between px-4">
         <div className="w-1/4">
           <h3 className="text-xl font-semibold mb-3">About My Web</h3>

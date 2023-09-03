@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { Link , NavLink} from 'react-router-dom'
-import logo from '../assets/images/logo1.png'
+import logo from '../assets/images/logo02.png'
 import '../assets/styles/headerStyles.css'
 
 const navigation = [

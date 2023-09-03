@@ -1,6 +1,6 @@
-function ProvincePopUp() {
+function ProvincePopUp(props) {
     return (
-      <div className="pop-up-container w-full h-[100vh] fixed bg-gray-200/80 z-20">
+      <div className="pop-up-container w-full h-[100vh] fixed bg-gray-200/80 z-50 top-0 left-0 ">
         <div className="pop-up-box w-[500px] h-[500px] mx-auto mt-[50px] bg-white rounded-lg ">
           <div className="header flex border-b h-[50px] items-center font-bold relative">
             <button className="back-prev absolute top-[15px] left-[10px]">
@@ -18,7 +18,7 @@ function ProvincePopUp() {
               </svg>
             </button>
             <span className="mx-auto">Chọn khu vực bạn muốn tìm kiếm</span>
-            <button className="exit-btn absolute rounded-full  w-[25px] h-[25px] top-[-5px] right-[-7px]">
+            <button className="exit-btn absolute rounded-full  w-[25px] h-[25px] top-[-5px] right-[-7px]" onClick={props.handleClose}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
