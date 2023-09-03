@@ -1,13 +1,17 @@
 import { Footer } from "../components/Footer";
 import Header from "../components/Header";
+import PopUpProvince from "../components/PopUpProvince";
+
 
 function FindHostel() {
     return (
         <div>
             <Header/>
-            <div className="text-4xl text-center mt-24 h-96">
-                This is FindHostel page
+            <div className="filter-container w-[60%] mx-[auto]  ">
+
             </div>
+            {/* <PopUpProvince /> */}
+            <div className="h-[1000px] bg-yelow-400  "></div>
             <Footer/>
         </div>
         

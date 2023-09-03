@@ -101,3 +101,12 @@ label {
 .hidden {
     display: none;
 }
+.email :focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.password :focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+} 
+.input-email {
+    background-color:rgb(214, 212, 212);
+}

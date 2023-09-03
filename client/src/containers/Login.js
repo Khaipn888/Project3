@@ -12,9 +12,9 @@ function Login() {
     }
 
   return (
-    <>
-       <div className="login-bg">   
-        <Header />
+    <div>
+      <Header />    
+      <div className="login-bg">  
       <div className="login-container shadow-2xl rounded-lg">
         <div className="bg-login">
           <div className="login-form items-center">
@@ -29,7 +29,7 @@ function Login() {
                     type="email"
                     id="email"
                     placeholder="  Enter your email"
-                    className="input rounded-md"
+                    className="input input-email rounded-md"
                   />
                 </label>
               </div>
@@ -98,7 +98,7 @@ function Login() {
     </div>  
     <BackToTopButton/> 
     <Footer/>
-    </>
+    </div>
     
   );
 }
