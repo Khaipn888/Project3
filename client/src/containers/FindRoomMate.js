@@ -31,7 +31,6 @@ function FindRoomMate() {
     popUpCopy.areaIsOpen = !popUpCopy.areaIsOpen;
     setIsOpen(popUpCopy);
   };
-  console.log(popUp);
 
   return (
     <div>
