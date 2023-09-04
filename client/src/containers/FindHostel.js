@@ -14,6 +14,7 @@ function FindHostel() {
     <div>
       <Header />
       {isOpen && <ProvincePopUp handleClose={ handlePopUp} />}
+      
       <div className="filter-container w-[60%] mx-[20%] my-[10px] grid grid-cols-10 gap-x-2 rounded-lg bg-cyan-100/75 fixed top-[65px] px-[20px] py-[10px] items-center">
         <div className="grid grid-cols-4 gap-x-2 col-span-9 ">
           <div className="kinds rounded-md bg-white cursor-pointer h-[40px] text-center hover:border hover:border-black " onClick={handlePopUp}>

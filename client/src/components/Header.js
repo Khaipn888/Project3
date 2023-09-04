@@ -24,7 +24,6 @@ export default function Header() {
                       className="h-8 w-auto"
                       src={logo}
                       alt="Your Company"
-
                     />
                   </Link>
                 </div>

@@ -19,3 +19,12 @@ svg {
 .dang-tin :hover {
     background-color: red;
 }
+.active {
+    background-color: #006da4 !important;
+    color: rgb(255, 255, 255);
+    border-bottom: 4px  solid black;
+    box-shadow: 2px
+  }
+  .active :hover {
+    background-color: #006da4 !important
+  }
