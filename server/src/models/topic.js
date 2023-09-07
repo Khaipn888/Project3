@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   Topic.init({
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    user_id: DataTypes.INTEGER,
-    comment_id: DataTypes.INTEGER
+    user_id: DataTypes.STRING,
+    comment_id: DataTypes.STRING
 
   }, {
     sequelize,

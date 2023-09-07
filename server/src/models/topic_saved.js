@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Topic_saved.init({
-    user_id: DataTypes.INTEGER,
-    topic_id: DataTypes.INTEGER
+    user_id: DataTypes.STRING,
+    topic_id: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Topic_saved',
