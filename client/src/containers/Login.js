@@ -14,7 +14,7 @@ function Login() {
   return (
     <div>
       <Header />    
-      <div className="login-bg">  
+      <div className="login-bg relative">  
       <div className="login-container shadow-2xl rounded-lg">
         <div className="bg-login">
           <div className="login-form items-center">
