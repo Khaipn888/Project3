@@ -9,10 +9,8 @@ function BackToTopButton(){
         window.addEventListener("scroll", () => {
             if(window.scrollY > 10){
                setBackToTop(true);
-               console.log("scroll > 10px")
             }else{
                 setBackToTop(false);
-                console.log("not yet scroll > 10px")
             }
         })
     }, [])

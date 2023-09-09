@@ -5,7 +5,7 @@ function Forum() {
     return (
         <div>
             <Header/>
-            <div className="text-4xl text-center mt-24 h-96">
+            <div className="h-[500px] w-[100%] bg-red-500 ">
                 This is Forum page
             </div>
             <Footer/>

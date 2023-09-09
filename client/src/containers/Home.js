@@ -11,8 +11,30 @@ function Home() {
             <div className="slider rounded-lg relative top-[65px] ">
                 <SlickSlider/>
             </div>
-            <div className="text-4xl text-center mt-24 h-96">
+            <div className="new-news max-w-[70%] ml-[100px] mt-[200px]">
+                <div className=" font-bold text-[30px]">
+                    <h2>Tin cho thuê trọ mới nhất</h2>
+                </div>
+                <hr />
+                <br />
+                
                 <PostInstance />
+                <PostInstance />
+                <PostInstance />
+            </div>
+            <div className="new-news max-w-[70%] ml-[100px] mt-[200px]">
+                <div className=" font-bold text-[30px]">
+                    <h2>Tin tìm người ở ghép mới nhất</h2>
+                </div>
+                <hr />
+                <br />
+                
+                <PostInstance />
+                <PostInstance />
+                <PostInstance />
+            </div>
+            <div className="w-[80%]">
+                
             </div>
             <BackToTopButton/> 
             <Footer/>

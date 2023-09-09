@@ -68,7 +68,6 @@
  }
 
 .button-login {
-    background-color: rgb(0 109 164)!important;
     color: rgb(255, 255, 255);
     width: 60%;
     margin: 30px auto;
@@ -80,9 +79,7 @@
     transform: translateX(-50%);
     border-bottom: 1px solid black;
 }
-.button-login :hover {
-    background-color: #fb0000;
-}
+
 label {
     font-size: 15px;
     font-weight: 500;

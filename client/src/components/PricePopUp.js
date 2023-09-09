@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactSlider from "react-slider";
+import '../assets/styles/popUpStyle.css'
 
 function PricePopUp(props) {
     const MIN = 0;
@@ -18,7 +19,7 @@ function PricePopUp(props) {
           <ReactSlider
             className=" w-[80%] mx-[10%] bg-gray-400 h-[5px] "
             thumbClassName="w-[20px] h-[20px] rounded-full bg-gray-400 top-[-6px] focus:bg-red-500 cursor-grab"
-            trackClassName=" h-[5px] bg-red-500"
+            trackClassName=" h-[5px] track"
             value={values}
             min={MIN}
             max={MAX}

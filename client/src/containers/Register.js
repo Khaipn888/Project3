@@ -1,18 +1,56 @@
 import Header from "../components/Header";
 import "../assets/styles/loginStyles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Footer } from "../components/Footer";
 import BackToTopButton from "../components/BackToTopButton";
-import { apiRegister } from "../services/auth"; 
+import * as action from "../store/actions/index";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Register() {
   const [show, setShow] = useState(false);
+  const [info, setInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+    // password1: ''
+  });
+
+  const {isLogedIn} = useSelector(state => state.auth)
+  const navigate = useNavigate();
+  const disPatch = useDispatch();
+
+  const infoCopy = { ...info };
+
+  useEffect(() => {
+    console.log(isLogedIn);
+    if (isLogedIn) {
+      navigate('/')
+    }
+   })
+  
+
+  const handleChange = (e) => {
+    infoCopy[e.target.name] = e.target.value;
+    setInfo(infoCopy);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(info);
+    disPatch(action.register(info));
+  };
+
   const handleShowPass = () => {
     setShow(!show);
   };
 
+  
+  // const handleRegister = async () => {
+
+  // }
   return (
     <div>
       <Header />
@@ -23,15 +61,18 @@ function Register() {
               <div className="login-header">
                 <h1>Đăng Ký</h1>
               </div>
-              <form action="">
+              <form>
                 <div className="name">
                   <label htmlFor="name" className="email-label">
                     Tên
                     <input
-                      type="email"
-                      id="email"
+                      type="text"
+                      id="name"
+                      name="name"
                       placeholder="Enter your user name"
                       className="input rounded-md"
+                      value={info.name}
+                      onChange={handleChange}
                     />
                   </label>
                 </div>
@@ -41,8 +82,10 @@ function Register() {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       placeholder="Enter your email"
                       className="input rounded-md"
+                      onChange={handleChange}
                     />
                   </label>
                 </div>
@@ -52,8 +95,10 @@ function Register() {
                     <input
                       type={show ? "text" : "password"}
                       id="password"
+                      name="password"
                       placeholder="Enter your password"
                       className="input input-pass rounded-md"
+                      onChange={handleChange}
                     />
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -94,14 +139,16 @@ function Register() {
                     </svg>
                   </label>
                 </div>
-                <div className="password">
+                {/* <div className="password">
                   <label htmlFor="cf-password" className="pass-label">
                     Nhập lại mật khẩu
                     <input
                       type={show ? "text" : "password"}
                       id="cf-password"
+                      name="password1"
                       placeholder="Confirm your password"
                       className="input input-pass rounded-md"
+                      onChange={handleChange}
                     />
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -141,11 +188,12 @@ function Register() {
                       />
                     </svg>
                   </label>
-                </div>
+                </div> */}
                 <div className="fogot-pass relative flex items-center justify-between"></div>
                 <button
                   type="submit"
-                  className=" button-login rounded-md bg-green"
+                  className=" button-login rounded-md bg-sky-800 hover:bg-sky-900 "
+                  onClick={handleSubmit}
                 >
                   Đăng Ký
                 </button>

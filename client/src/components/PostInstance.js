@@ -8,7 +8,7 @@ function PostInstance() {
   }/${current.getFullYear()}`;
   return (
     <>
-      <div className="post-container grid grid-cols-2 gap-x-4 w-[800px] h-[250px] m-auto bg-slate-100 relative rounded-md hover:shadow-2xl cursor-pointer">
+      <div className="post-container grid grid-cols-2 gap-x-4 w-[800px] h-[250px] my-[20px] bg-slate-100 relative rounded-md hover:shadow-xl cursor-pointer">
         <div className=" post-image h-[250px] w-[400px] overflow-hidden rounded-l-md ">
           <img
             src={thumbnail}

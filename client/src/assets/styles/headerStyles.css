@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navlink :hover {
-    background-color: rgb(174, 248, 255)
+    background-color: rgb(255, 255, 255)
 }
 .navlink{
     display: flex;
@@ -22,7 +22,7 @@ svg {
 .active {
     background-color: #006da4 !important;
     color: rgb(255, 255, 255);
-    border-bottom: 4px  solid black;
+    border-bottom: 2px  solid black;
     box-shadow: 2px
   }
   .active :hover {
