@@ -8,7 +8,7 @@ function PricePopUp(props) {
     const [values, setValues] = useState([MIN,MAX]);
 
   return (
-    <div className="pop-up-container w-full h-[100vh] fixed bg-gray-200/80 z-50 top-0 left-0 ">
+    <div className="pop-up-container w-full h-[100vh] fixed bg-gray-200/50 z-50 top-0 left-0 ">
       <div className="pop-up-box w-[800px] h-[300px] mx-auto mt-[50px] bg-white rounded-lg relative">
         <div className="price-values justify-center items-center text-center my-[20px] py-[30px]">
           <span className="mt-[20px] font-bold text-[25px] text-cyan-800">
@@ -32,7 +32,7 @@ function PricePopUp(props) {
             <span>50 Triệu</span>
         </div>
         <button
-          className="exit-btn absolute rounded-full  w-[25px] h-[25px] top-[-5px] right-[-7px]"
+          className="exit-btn absolute rounded-full  w-[25px] h-[25px] top-[-8px] right-[-7px]"
           onClick={props.handleClose}
         >
           <svg

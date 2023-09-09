@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/images/logo02.png";
+import logo from "../assets/images/logo.png";
 import "../assets/styles/headerStyles.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as action from "../store/actions/index";
@@ -26,9 +26,9 @@ export default function Header() {
         <div className="mx-auto max-w-[1400px] px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex flex-shrink-0 items-center">
+              <div className="flex flex-shrink-0 items-center relative w-[180px]">
                 <Link to="/">
-                  <img className="h-8 w-auto" src={logo} alt="Your Company" />
+                  <img className="h-[170px] w-auto absolute top-[-57px] " src={logo} alt="Your Company" />
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:block ">
