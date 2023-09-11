@@ -14,17 +14,17 @@ function FindRoomMate() {
     priceIsOpen: false,
     areaIsOpen: false,
   });
-  const popUpCopy = {...popUp}
+  const popUpCopy = { ...popUp };
   const handleKindPopUp = () => {
-    popUpCopy.kindIsOpen = !popUpCopy.kindIsOpen
+    popUpCopy.kindIsOpen = !popUpCopy.kindIsOpen;
     setIsOpen(popUpCopy);
   };
   const handleProvincePopUp = () => {
-    popUpCopy.provinceIsOpen = !popUpCopy.provinceIsOpen
+    popUpCopy.provinceIsOpen = !popUpCopy.provinceIsOpen;
     setIsOpen(popUpCopy);
   };
   const handlePricePopUp = () => {
-    setIsOpen(popUpCopy.priceIsOpen = !popUpCopy.priceIsOpen);
+    setIsOpen((popUpCopy.priceIsOpen = !popUpCopy.priceIsOpen));
     setIsOpen(popUpCopy);
   };
   const handleAreaPopUp = () => {
@@ -38,19 +38,26 @@ function FindRoomMate() {
       {popUp.provinceIsOpen && (
         <ProvincePopUp handleClose={handleProvincePopUp} />
       )}
-      {popUp.priceIsOpen && (
-        <PricePopUp handleClose={handlePricePopUp} />
-      )}
-      {popUp.areaIsOpen && (
-        <AreaPopUp handleClose={handleAreaPopUp} />
-      )}
+      {popUp.priceIsOpen && <PricePopUp handleClose={handlePricePopUp} />}
+      {popUp.areaIsOpen && <AreaPopUp handleClose={handleAreaPopUp} />}
       <div className="filter-container w-[60%] mx-[20%] my-[10px] grid grid-cols-10 gap-x-2 rounded-lg bg-cyan-100/75 fixed top-[65px] px-[20px] py-[10px] items-center">
         <div className="grid grid-cols-4 gap-x-2 col-span-9 ">
           <div
             className="kinds rounded-md bg-white cursor-pointer h-[40px] text-center hover:border hover:border-black "
             onClick={handleKindPopUp}
           >
-            <span>Loại trọ</span>
+            <label for="underline_select" class="sr-only">
+              Underline select
+            </label>
+            <select
+              id="underline_select"
+              className="block py-2.5 px-0 w-full text-center   bg-transparent  appearance-none  focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+            >
+              <option selected>Loại trọ</option>
+              <option value="US">Nhà cấp 4</option>
+              <option value="CA">CCMN</option>
+              <option value="OT">Khác</option>
+            </select>
           </div>
           <div
             className="location rounded-md bg-white cursor-pointer h-[40px] text-center hover:border hover:border-black "
@@ -73,7 +80,7 @@ function FindRoomMate() {
         </div>
 
         <div className="apply bg-gray-200 rounded-lg p[5px] text-center h-[30px] items-center hover:bg-red-400 font-bold flex hover:border hover:border-red-800">
-          <button className="w-[100%]">Lọc</button>
+          <button className="w-[100%]">Tìm</button>
         </div>
       </div>
       <div className="h-[1000px] bg-yelow-400  "></div>
