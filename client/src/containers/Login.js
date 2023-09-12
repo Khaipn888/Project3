@@ -28,6 +28,7 @@ function Login() {
       navigate('/')
     }
    })
+   
   const handleChange = (e) => {
     infoCopy[e.target.name] = e.target.value;
     setInfo(infoCopy);

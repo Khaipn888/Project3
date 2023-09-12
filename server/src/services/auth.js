@@ -49,3 +49,5 @@ export const loginService = ({email, password}) => new Promise( async (resolve, 
         reject(error)
     }
 })
+
+

@@ -4,6 +4,8 @@ import logo from "../assets/images/logo.png";
 import "../assets/styles/headerStyles.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as action from "../store/actions/index";
+import { apiGetCurrent } from "../services";
+import { useEffect } from "react";
 
 
 const navigation = [
@@ -15,7 +17,15 @@ const navigation = [
 
 export default function Header() {
   const { isLogedIn } = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const { currentData } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setTimeout(() => {
+      isLogedIn && dispatch(action.getCurrent())
+    }, 100)
+  },[isLogedIn])
 
   return (
     <div className="h-[65px] ">
@@ -84,7 +94,7 @@ export default function Header() {
                       <div className="avatar-img h-10 w-10 rounded-full border border-current overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="avatar" />
                       </div>
-                      <span className="user-name">&nbsp;Mya</span>
+                      <span className="user-name font-bold">&nbsp;{currentData?.name}</span>
                     </div>
                     <div className="logout flex items-center rounded-lg hover:bg-white p-[5px]">
                       <button onClick={() => dispatch(action.logout())}>

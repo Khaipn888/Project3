@@ -4,6 +4,8 @@ const actionTypes = {
     LOGIN_FAIL: 'LOGIN_FAIL',
     REGISTER_SUCCESS: 'REGISTER_SUCCESS',
     REGISTER_FAIL: 'REGISTER_FAIL',
-    LOGOUT: 'LOGOUT'
+    LOGOUT: 'LOGOUT',
+
+    GET_CURRENT: 'GET_CURRENT'
 }
 export default actionTypes
