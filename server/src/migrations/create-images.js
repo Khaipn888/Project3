@@ -6,11 +6,12 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
-      name: {
-        type: Sequelize.STRING
+      image: {
+        type: Sequelize.TEXT
       },
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
