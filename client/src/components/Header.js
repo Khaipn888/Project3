@@ -26,7 +26,6 @@ export default function Header() {
       isLogedIn && dispatch(action.getCurrent())
     }, 100)
   },[isLogedIn])
-
   return (
     <div className="h-[65px] ">
       <Disclosure

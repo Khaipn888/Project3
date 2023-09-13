@@ -8,7 +8,9 @@ import {
   apiGetDistrictOnline,
   apiGetWardOnline,
 } from "../services/app";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
+import { apiUploadImages } from "../services/post";
+import Loading from "../components/Loading";
 
 const listSideBar = [
   "Quản lý thông tin cá nhân",
@@ -21,6 +23,8 @@ const listSideBar = [
 
 function Post() {
   const { isLogedIn } = useSelector((state) => state.auth);
+  const { currentData } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const [provinceOp, setProvinceOp] = useState([]);
   const [provinceCr, setProvinceCr] = useState();
@@ -30,8 +34,24 @@ function Post() {
   const [wardCr, setWardCr] = useState();
   const [homeStreet, setHomeStreet] = useState("");
   const [reset, setReset] = useState(false);
+  const [imagesReview, setImageReview] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [address, setAddress] = useState("");
+  const [payload, setPayload] = useState({
+    province: "",
+    district: "",
+    ward: "",
+    address: "",
+    category: "",
+    price: "",
+    area: "",
+    title: "",
+    description: "",
+    images: [],
+    contact_name: "",
+    contact_phone: "",
+    zalo: "",
+  });
 
   useEffect(() => {
     const fetchProvinceOnline = async () => {
@@ -62,6 +82,80 @@ function Post() {
     districtCr ? setReset(false) : setReset(true);
     !districtCr && setWardOp([]);
   }, [districtCr]);
+
+  useEffect(() => {
+    setPayload((prev) => ({
+      ...prev,
+      province: provinceCr
+        ? provinceOp?.find((item) => item.province_id === provinceCr)
+            ?.province_name
+        : "",
+      district: districtCr
+        ? districtOp?.find((item) => item.district_id === districtCr)
+            ?.district_name
+        : "",
+      ward: wardCr
+        ? wardOp?.find((item) => item.ward_id === wardCr)?.ward_name
+        : "",
+      address: `${homeStreet} ${
+        wardCr
+          ? `${wardOp?.find((item) => item.ward_id === wardCr)?.ward_name}`
+          : ""
+      } ${
+        districtCr
+          ? `${
+              districtOp?.find((item) => item.district_id === districtCr)
+                ?.district_name
+            }`
+          : ""
+      } ${
+        provinceCr
+          ? `${
+              provinceOp?.find((item) => item.province_id === provinceCr)
+                ?.province_name
+            }`
+          : ""
+      }`,
+    }));
+  }, [provinceCr, districtCr, wardCr, homeStreet]);
+
+  const handlieFiles = async (e) => {
+    e.stopPropagation();
+    setIsLoading(true);
+    const images = [];
+    const files = e.target.files;
+    const formData = new FormData();
+    for (let f of files) {
+      formData.append("file", f);
+      formData.append(
+        "upload_preset",
+        process.env.REACT_APP_UPLOAD_ASSETS_NAME
+      );
+      const response = await apiUploadImages(formData);
+
+      if (response.status === 200) {
+        images.push(response.data.secure_url);
+      }
+    }
+    setIsLoading(false);
+    setImageReview((prev) => [...prev, ...images]);
+    setPayload((prev) => ({
+      ...prev,
+      images: [...payload.images, ...images],
+    }));
+  };
+
+  const handleDeleteImage = (image) => {
+    setImageReview((prev) => prev?.filter((item) => item !== image));
+    setPayload((prev) => ({
+      ...prev,
+      images: [...payload.images.filter((item) => item !== image)],
+    }));
+  };
+
+  const handleSubmit = () => {
+    console.log(payload);
+  }
 
   return (
     <div>
@@ -109,7 +203,7 @@ function Post() {
                 </div>
               </div>
               <div className="flex justify-center font-bold text-[20px]">
-                Mya
+                {/* {currentData.name} */}kai
               </div>
             </div>
             <div className="mt-[30px] ">
@@ -263,33 +357,53 @@ function Post() {
                   <div className="grid grid-cols-10 gap-4">
                     <div className="flex flex-col my-[10px] py-[10px] col-span-3 ">
                       <label htmlFor="cho-thue">Loại cho thuê</label>
-                      <select name="" id="cho-thue" className="h-8 rounded fon">
+                      <select
+                        name=""
+                        id="cho-thue"
+                        className="h-8 rounded"
+                        value={payload.category}
+                        onChange={(e) =>
+                          setPayload((prev) => ({
+                            ...prev,
+                            category: e.target.value,
+                          }))
+                        }
+                      >
                         <option value disabled selected>
                           Chọn thể loại
                         </option>
-                        <option value="">Cho thuê phòng trọ</option>
-                        <option value="">Cho thuê căn hộ</option>
-                        <option value="">Cho thuê căn hộ</option>
-                        <option value="">Tìm người ở ghép</option>
+                        <option value="Cho thuê phòng trọ">
+                          Cho thuê phòng trọ
+                        </option>
+                        <option value="Cho thuê căn hộ">Cho thuê căn hộ</option>
+                        <option value="Tìm người ở ghép">
+                          Tìm người ở ghép
+                        </option>
                       </select>
                     </div>
                     <div className="flex flex-col my-[10px] py-[10px] col-span-4">
-                      <label htmlFor="price">Giá</label>
+                      <label htmlFor="price">Giá cho thuê</label>
                       <div className="flex ">
                         <input
                           id="price"
                           type="text"
                           className="p-2 w-full h-8 rounded-l focus:outline-none"
-                          placeholder="VD: 1,500,000 thì nhập là 1.5"
+                          placeholder="VD: 1 triệu rưỡi thì nhập 1500000"
+                          value={payload.price}
+                          onChange={(e) =>
+                            setPayload((prev) => ({
+                              ...prev,
+                              price: e.target.value,
+                            }))
+                          }
                         />
-                        <select
+                        <div
                           name=""
                           id=""
-                          className="rounded-r bg-slate-300"
+                          className="rounded-r bg-slate-300 px-2 flex items-center"
                         >
-                          <option value="">Triệu/Tháng</option>
-                          <option value="">Nghìn/Tháng</option>
-                        </select>
+                          Vnd/Tháng
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col my-[10px] py-[10px] col-span-3">
@@ -300,6 +414,13 @@ function Post() {
                           type="text"
                           className=" p-2 w-full h-8 rounded-l focus:outline-none"
                           placeholder="Nhập diện tích"
+                          value={payload.area}
+                          onChange={(e) =>
+                            setPayload((prev) => ({
+                              ...prev,
+                              area: e.target.value,
+                            }))
+                          }
                         />
                         <span className="h-8 w-8 bg-slate-300 justify-center flex items-center">
                           m<sup>2</sup>
@@ -319,6 +440,13 @@ function Post() {
                       name=""
                       id="tieu-de"
                       className=" p-2 w-full h-10 rounded focus:outline-none"
+                      value={payload.title}
+                      onChange={(e) =>
+                        setPayload((prev) => ({
+                          ...prev,
+                          title: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                   <div className="">
@@ -328,6 +456,13 @@ function Post() {
                       name=""
                       id="mo-ta"
                       className=" p-2 w-full h-[300px] rounded focus:outline-none"
+                      value={payload.description}
+                      onChange={(e) =>
+                        setPayload((prev) => ({
+                          ...prev,
+                          description: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                 </div>
@@ -335,25 +470,85 @@ function Post() {
                   <div className="text-[25px] font-bold text-cyan-900 py-2 border-b border-slate-400 mb-10">
                     Hình ảnh/Video
                   </div>
-                  <div className="">
-                    <label htmlFor="file" className="h-[120px] w-[120px] bg-green-800 flex justify-center items-center relative cursor-pointer rounded">
-                    <input hidden type="file" id="file" />
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        className="w-6 h-6 left-[50px] absolute top-[40px]"
+                  <div className="grid grid-cols-4 gap-x-4 gap-y-8">
+                    <div className="flex relative">
+                      <label
+                        htmlFor="file"
+                        className="h-[120px] w-[120px] bg-green-800 flex justify-center items-center relative cursor-pointer rounded"
                       >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        <input
+                          onChange={handlieFiles}
+                          hidden
+                          type="file"
+                          id="file"
+                          multiple
                         />
-                      </svg>
-                      <span className="absolute top-[60px]">Up ảnh/Video</span>
-                    </label>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          className="w-6 h-6 left-[50px] absolute top-[40px]"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span className="absolute top-[60px]">
+                          Up ảnh/Video
+                        </span>
+                      </label>
+
+                      {isLoading ? (
+                        <div className="w-10 h-10 absolute top-[25px] left-[140px]">
+                          <Loading />
+                        </div>
+                      ) : (
+                        imagesReview.length !== 0 && (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="w-10 h-10 absolute top-[40px] left-[155px]"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                        )
+                      )}
+                    </div>
+                    {imagesReview.map((item) => {
+                      return (
+                        <div
+                          key={item}
+                          className="h-[120px] rounded overflow-hidden relative"
+                        >
+                          <img src={item} alt="imageUploaded " />
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            className="w-8 h-8 absolute right-[1px] top-[1px] cursor-pointer p-2 rounded-full bg-slate-100/30 hover:bg-slate-100/80"
+                            title="Xóa"
+                            onClick={() => handleDeleteImage(item)}
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                            />
+                          </svg>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
                 <div className="mt-14">
@@ -367,6 +562,13 @@ function Post() {
                         id="ten"
                         type="text"
                         className=" p-2 w-full h-8 rounded focus:outline-none"
+                        value={payload.contact_name}
+                        onChange={(e) =>
+                          setPayload((prev) => ({
+                            ...prev,
+                            contact_name: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                     <div className="flex flex-col my-[10px] py-[10px]">
@@ -375,9 +577,16 @@ function Post() {
                         id="sdt"
                         type="text"
                         className=" p-2 w-full h-8 rounded focus:outline-none"
+                        value={payload.contact_phone}
+                        onChange={(e) =>
+                          setPayload((prev) => ({
+                            ...prev,
+                            contact_phone: e.target.value,
+                          }))
+                        }
                       />
                     </div>
-                    <div className="flex flex-col my-[10px] py-[10px]">
+                    <div className="flex flex-col mt-[10px] py-[10px] mb-[80px]">
                       <label htmlFor="zalo">Zalo</label>
                       <input
                         id="zalo"
@@ -388,8 +597,11 @@ function Post() {
                   </div>
                 </div>
               </div>
-              <div className="py-20 flex justify-center">
-                <button className="bg-green-600 w-[50%] h-10 rounded p-1 hover:bg-green-700 hover:text-white text-xl font-bold">
+              <div className="py-10 flex justify-center border-t border-slate-300 mx-[5%] ">
+                <button
+                  className="bg-green-600 w-[50%] h-10 rounded p-1 hover:bg-green-700 hover:text-white text-xl font-bold"
+                  onClick={handleSubmit}
+                >
                   Ok Đăng Tin Này
                 </button>
               </div>
@@ -402,4 +614,4 @@ function Post() {
     </div>
   );
 }
-export default Post;
+export default memo(Post);

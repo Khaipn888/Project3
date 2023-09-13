@@ -12,7 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       area: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
+      },
+      price: {
+        type: Sequelize.INTEGER
       },
       user_id: {
         type: Sequelize.STRING
@@ -26,7 +29,25 @@ module.exports = {
       thumbnail: {
         type: Sequelize.STRING
       },
-      category_id: {
+      category: {
+        type: Sequelize.STRING
+      },
+      contact_name: {
+        type: Sequelize.STRING
+      },
+      contact_phone: {
+        type: Sequelize.STRING
+      },
+      zalo: {
+        type: Sequelize.STRING
+      },
+      province: {
+        type: Sequelize.STRING
+      },
+      district: {
+        type: Sequelize.STRING
+      },
+      ward: {
         type: Sequelize.STRING
       },
       createdAt: {
