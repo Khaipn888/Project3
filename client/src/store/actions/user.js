@@ -16,7 +16,7 @@ export const getCurrent =  () => async (dispatch) => {
                 currentData: null
             })
 
-            dispatch({ type: actionTypes.LOGOUT})
+             dispatch({ type: actionTypes.LOGOUT})
         }
     } catch (error) {
         dispatch({
@@ -24,6 +24,6 @@ export const getCurrent =  () => async (dispatch) => {
             currentData: null,
             msg: error
         })
-        dispatch({ type: actionTypes.LOGOUT})
+        //   dispatch({ type: actionTypes.LOGOUT})
     }
 }

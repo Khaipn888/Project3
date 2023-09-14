@@ -7,10 +7,12 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
   let token = window.localStorage.getItem('persist:auth') && JSON.parse(window.localStorage.getItem('persist:auth'))?.token?.slice(1,-1);
-  console.log(token);
+
   config.headers = {
     authorization: token ? `Bearer ${token}` : null
+
   }
+
   return config;
 }, function (error) {
   // Do something with request error

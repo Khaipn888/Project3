@@ -15,3 +15,15 @@ export const apiUploadImages = (images) => new Promise( async (resovle, reject) 
     }
 })
 
+export const apiCreateNewPost = (payload) => new Promise( async (resovle, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'post',
+            url: "/api/v1/post/create-new-post",
+            data: payload
+        })
+        resovle(response)
+    } catch (error) {
+        reject(error)
+    }
+})

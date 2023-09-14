@@ -21,11 +21,11 @@ export default function Header() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTimeout(() => {
-      isLogedIn && dispatch(action.getCurrent())
-    }, 100)
-  },[isLogedIn])
+   useEffect(() => {
+     setTimeout(() => {
+       isLogedIn && dispatch(action.getCurrent())
+     }, 100)
+   },[isLogedIn])
   return (
     <div className="h-[65px] ">
       <Disclosure

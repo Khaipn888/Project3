@@ -9,7 +9,7 @@ import {
   apiGetWardOnline,
 } from "../services/app";
 import { memo, useEffect, useState } from "react";
-import { apiUploadImages } from "../services/post";
+import { apiUploadImages, apiCreateNewPost } from "../services/post";
 import Loading from "../components/Loading";
 
 const listSideBar = [
@@ -155,6 +155,8 @@ function Post() {
 
   const handleSubmit = () => {
     console.log(payload);
+    const response = apiCreateNewPost(payload);
+    console.log(response);
   }
 
   return (
@@ -602,7 +604,7 @@ function Post() {
                   className="bg-green-600 w-[50%] h-10 rounded p-1 hover:bg-green-700 hover:text-white text-xl font-bold"
                   onClick={handleSubmit}
                 >
-                  Ok Đăng Tin Này
+                  Ok Tạo Tin Này
                 </button>
               </div>
             </div>

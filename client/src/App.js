@@ -1,5 +1,4 @@
-import './index.css'
-import Header from './components/Header.js'
+import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './containers/Home';
 import FindHostel from './containers/FindHostel';
