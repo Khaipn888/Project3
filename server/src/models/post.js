@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   Post.init({
     address: DataTypes.STRING,
-    area: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
+    area: DataTypes.STRING,
+    price: DataTypes.STRING,
     category: DataTypes.STRING,
     title: DataTypes.STRING,
-    description: DataTypes.STRING,
+    description: DataTypes.TEXT('long'),
     thumbnail: DataTypes.STRING,
     user_id: DataTypes.STRING,
     contact_name: DataTypes.STRING,
@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     zalo: DataTypes.STRING,
     province: DataTypes.STRING,
     district: DataTypes.STRING,
-    ward: DataTypes.STRING
+    ward: DataTypes.STRING,
+    image_id: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Post',
