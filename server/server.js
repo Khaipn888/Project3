@@ -11,10 +11,11 @@ app.use(cors({
     methods: ["POST", "GET", "PUT", "DELETE"]
 }))
 
+
 app.use(express.json())
-app.use(express.urlencoded({extend: true}))
+app.use(express.urlencoded({extended: true}))
 initRouter(app)
-checkConected()
+// checkConected()
 const port = process.env.PORT || 8888
 const listener = app.listen(port, () => {
     console.log(`server is running on port ${listener.address().port}`)
