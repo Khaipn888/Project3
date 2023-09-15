@@ -7,7 +7,6 @@ import * as action from "../store/actions/index";
 import { apiGetCurrent } from "../services";
 import { useEffect } from "react";
 
-
 const navigation = [
   { name: "Tìm Trọ", href: "/FindHostel", current: true },
   { name: "Tìm người ở ghép", href: "/FindRoomMate", current: false },
@@ -21,11 +20,11 @@ export default function Header() {
 
   const dispatch = useDispatch();
 
-   useEffect(() => {
-     setTimeout(() => {
-       isLogedIn && dispatch(action.getCurrent())
-     }, 100)
-   },[isLogedIn])
+  useEffect(() => {
+    setTimeout(() => {
+      isLogedIn && dispatch(action.getCurrent());
+    }, 100);
+  }, [isLogedIn]);
   return (
     <div className="h-[65px] ">
       <Disclosure
@@ -37,7 +36,11 @@ export default function Header() {
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center relative w-[180px]">
                 <Link to="/">
-                  <img className="h-[170px] w-auto absolute top-[-57px] " src={logo} alt="Your Company" />
+                  <img
+                    className="h-[170px] w-auto absolute top-[-57px] "
+                    src={logo}
+                    alt="Your Company"
+                  />
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:block ">
@@ -63,37 +66,45 @@ export default function Header() {
                     <div className="saved rounded-lg hover:bg-white cursor-pointer p-[5px]">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
                         viewBox="0 0 24 24"
-                        fill="currentColor"
+                        stroke-width="1.5"
+                        stroke="currentColor"
                         class="w-7 h-7"
                       >
                         <path
-                          fill-rule="evenodd"
-                          d="M6 3a3 3 0 00-3 3v12a3 3 0 003 3h12a3 3 0 003-3V6a3 3 0 00-3-3H6zm1.5 1.5a.75.75 0 00-.75.75V16.5a.75.75 0 001.085.67L12 15.089l4.165 2.083a.75.75 0 001.085-.671V5.25a.75.75 0 00-.75-.75h-9z"
-                          clip-rule="evenodd"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9"
                         />
                       </svg>
                     </div>
                     <div className="nofitication rounded-lg hover:bg-white cursor-pointer p-[5px]">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
                         viewBox="0 0 24 24"
-                        fill="currentColor"
+                        stroke-width="1.5"
+                        stroke="currentColor"
                         class="w-7 h-7"
                       >
-                        <path d="M5.85 3.5a.75.75 0 00-1.117-1 9.719 9.719 0 00-2.348 4.876.75.75 0 001.479.248A8.219 8.219 0 015.85 3.5zM19.267 2.5a.75.75 0 10-1.118 1 8.22 8.22 0 011.987 4.124.75.75 0 001.48-.248A9.72 9.72 0 0019.266 2.5z" />
                         <path
-                          fill-rule="evenodd"
-                          d="M12 2.25A6.75 6.75 0 005.25 9v.75a8.217 8.217 0 01-2.119 5.52.75.75 0 00.298 1.206c1.544.57 3.16.99 4.831 1.243a3.75 3.75 0 107.48 0 24.583 24.583 0 004.83-1.244.75.75 0 00.298-1.205 8.217 8.217 0 01-2.118-5.52V9A6.75 6.75 0 0012 2.25zM9.75 18c0-.034 0-.067.002-.1a25.05 25.05 0 004.496 0l.002.1a2.25 2.25 0 11-4.5 0z"
-                          clip-rule="evenodd"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                         />
                       </svg>
                     </div>
                     <div className="avatar flex items-center cursor-pointer">
                       <div className="avatar-img h-10 w-10 rounded-full border border-current overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="avatar" />
+                        <img
+                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                          alt="avatar"
+                        />
                       </div>
-                      <span className="user-name font-bold">&nbsp;{currentData?.name}</span>
+                      <span className="user-name font-bold">
+                        &nbsp;{currentData?.name}
+                      </span>
                     </div>
                     <div className="logout flex items-center rounded-lg hover:bg-white p-[5px]">
                       <button onClick={() => dispatch(action.logout())}>

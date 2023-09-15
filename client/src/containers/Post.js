@@ -358,7 +358,7 @@ function Post() {
                   </div>
                   <div className="grid grid-cols-10 gap-4">
                     <div className="flex flex-col my-[10px] py-[10px] col-span-3 ">
-                      <label htmlFor="cho-thue">Loại cho thuê</label>
+                      <label htmlFor="cho-thue">Chuyên mục</label>
                       <select
                         name=""
                         id="cho-thue"
@@ -377,7 +377,6 @@ function Post() {
                         <option value="Cho thuê phòng trọ">
                           Cho thuê phòng trọ
                         </option>
-                        <option value="Cho thuê căn hộ">Cho thuê căn hộ</option>
                         <option value="Tìm người ở ghép">
                           Tìm người ở ghép
                         </option>

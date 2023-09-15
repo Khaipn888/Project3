@@ -6,10 +6,15 @@ export const getPostsService = () =>
     try {
       const response = await db.Post.findAll({
         raw: true,
+        nest: true,
+        include: [
+          { model: db.Images, as: "images" },
+          { model: db.User, as: "user" },
+        ],
       });
       resolve({
         err: response ? 0 : 1,
-        msg: response ? "Ok" : "Getting posts is faild",
+        msg: response ? "Ok" : "Getting posts is failed",
         response,
       });
     } catch (error) {
@@ -48,4 +53,27 @@ export const createNewPostService = (body, user_id) =>
     } catch (error) {
       reject(error);
     }
-  })
+  });
+
+  export const getPostsLimitService = (page, limit) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await db.Post.findAndCountAll({
+        raw: true,
+        nest: true,
+        offset: page * (+limit) ,
+        limit: +limit,
+        include: [
+          { model: db.Images, as: "images" },
+          { model: db.User, as: "user" },
+        ],
+      });
+      resolve({
+        err: response ? 0 : 1,
+        msg: response ? "Ok" : "Getting posts is failed",
+        response,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });

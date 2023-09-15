@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Images.hasOne(models.Post, {foreignKey: 'image_id', as: 'images'})
     }
   }
   Images.init({

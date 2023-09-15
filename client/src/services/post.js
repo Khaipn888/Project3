@@ -27,3 +27,31 @@ export const apiCreateNewPost = (payload) => new Promise( async (resovle, reject
         reject(error)
     }
 })
+
+export const apiGetPosts = () => new Promise( async (resovle, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: "/api/v1/post/all",
+        
+        })
+        resovle(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiGetPostsLimit = (page, limit) => new Promise( async (resovle, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: `/api/v1/post/limit?page=${page}&limit=${limit}`,
+        
+        })
+        resovle(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+
