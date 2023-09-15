@@ -31,7 +31,7 @@ function FindHostel() {
 
   useEffect(() => {
     dispatch(getPostsLimit(page, limit));
-  }, [page]);
+  }, [dispatch, page]);
   const popUpCopy = { ...popUp };
   // const handleKindPopUp = () => {
   //   popUpCopy.kindIsOpen = !popUpCopy.kindIsOpen;
