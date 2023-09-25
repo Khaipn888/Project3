@@ -125,7 +125,7 @@ function PostDetailInfo({item}) {
               </div>
             </div>
           </div>
-          <div className="report pt-5 mt-[20px] ">
+          <div className="report pt-5 mt-[16px] ">
             <label
               className="report-title text-[18px] font-bold text-cyan-900 flex items-center"
               htmlFor="report"
