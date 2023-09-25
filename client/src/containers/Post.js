@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import BackToTopButton from "../components/BackToTopButton";
+import { AlertTitle, Alert  } from '@mui/material'
 import {
   apiGetProvinceOnline,
   apiGetDistrictOnline,
@@ -36,6 +37,8 @@ function Post() {
   const [reset, setReset] = useState(false);
   const [imagesReview, setImageReview] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRefresh, setIsRefresh] = useState(false);
+
   const [kindOfPost, setKindOfPost] = useState(
     "Cho thuê phòng trọ/ Tìm người ở ghép"
   );
@@ -54,8 +57,16 @@ function Post() {
     contact_name: "",
     contact_phone: "",
     zalo: "",
-  }
+    user_id: "",
+  };
   const [payload, setPayload] = useState(defaultPayload);
+
+  useEffect(() => {
+    setPayload(prev => ({
+      ...prev,
+      user_id: currentData?.id
+    }))
+  },[kindOfPost])
 
   useEffect(() => {
     const fetchProvinceOnline = async () => {
@@ -88,7 +99,7 @@ function Post() {
   }, [districtCr]);
 
   useEffect(() => {
-     setPayload((prev) => ({
+    setPayload((prev) => ({
       ...prev,
       province: provinceCr
         ? provinceOp?.find((item) => item.province_id === provinceCr)
@@ -121,7 +132,15 @@ function Post() {
           : ""
       }`,
     }));
-  }, [provinceCr, districtCr, wardCr, homeStreet, provinceOp, districtOp, wardOp]);
+  }, [
+    provinceCr,
+    districtCr,
+    wardCr,
+    homeStreet,
+    provinceOp,
+    districtOp,
+    wardOp,
+  ]);
 
   const handlieFiles = async (e) => {
     e.stopPropagation();
@@ -157,33 +176,49 @@ function Post() {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleRefresh = () => {
+    isRefresh && window.location.reload(false);
+    // <Alert severity="success">
+    //   <AlertTitle>Success</AlertTitle>
+    //   Create new news successfully!
+    // </Alert>;
+  };
+  const handleCreateNewPost = () => {
     console.log(payload);
     const response = apiCreateNewPost(payload);
     console.log(response);
+  }
+  const handleSubmit = () => {
+    const user_id = currentData.id;
+    setPayload((prev) => ({
+      ...prev,
+      user_id: user_id,
+    }));
+    
+    handleCreateNewPost();
+    setTimeout(window.location.reload(false), 2000)
+    handleRefresh();
+    
   };
 
   const handleChangeKindOfPost = (e) => {
-    setProvinceCr('')
+    setProvinceCr("");
     setReset(true);
-    setHomeStreet('');
-    setImageReview([])
-
+    setHomeStreet("");
+    setImageReview([]);
 
     setPayload(defaultPayload);
     setKindOfPost(e.target.value);
     kindOfPost === "Pass đồ"
       ? setPayload((prev) => ({
           ...prev,
-          category: "Pass đồ",
+          category: kindOfPost,
         }))
       : setPayload((prev) => ({
           ...prev,
           category: "",
         }));
   };
-  console.log(payload);
-  console.log(typeof provinceCr);
   return (
     <div>
       <Header />
@@ -932,6 +967,7 @@ function Post() {
 
               <div className="py-10 flex justify-center border-t border-slate-300 mx-[5%] ">
                 <button
+                  type="submit"
                   className="bg-green-600 w-[50%] h-10 rounded p-1 hover:bg-green-700 hover:text-white text-xl font-bold"
                   onClick={handleSubmit}
                 >

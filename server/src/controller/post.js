@@ -40,16 +40,17 @@ export const createNewPost = async (req, res) => {
         province,
         ward,
         contact_name,
-        contact_phone
+        contact_phone,
+        user_id
       } = req.body;
-      const { id } = req.user;
-      if ( !id || !title || !address || !area || !price || !category || !district || !description || !province || !ward || !contact_name || !contact_phone ) {
+      // const { id } = req.user;
+      if (  !title || !price || !description || !province || !contact_name || !contact_phone ) {
           return res.status(400).json({
               err: 1,
               msg: 'Missing inputs'
           })
       }
-      const response = await postService.createNewPostService(req.body, id);
+      const response = await postService.createNewPostService(req.body);
       return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({

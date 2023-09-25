@@ -21,7 +21,7 @@ export const getPostsService = () =>
       reject(error);
     }
   });
-export const createNewPostService = (body, user_id) =>
+export const createNewPostService = (body) =>
   new Promise(async (resolve, reject) => {
     try {
       const image_id = v4();
@@ -37,7 +37,7 @@ export const createNewPostService = (body, user_id) =>
         description: body.description || null,
         contact_name: body.contact_name || null,
         contact_phone: body.contact_phone || null,
-        user_id,
+        user_id: body.user_id,
         image_id,
         category: body.category || null,
         thumbnail: body.images[0] || null,

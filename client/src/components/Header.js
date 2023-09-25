@@ -1,5 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import "../assets/styles/headerStyles.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,17 +19,22 @@ export default function Header() {
   const { currentData } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       isLogedIn && dispatch(action.getCurrent());
     }, 100);
   }, [isLogedIn]);
+  const handleLogout = () => {
+    dispatch(action.logout());
+    navigate("/");
+
+  }
   return (
     <div className="h-[65px] ">
       <Disclosure
         as="nav"
-        className="bg-cyan-100/75 fixed top-[0px] w-[100%] z-10 "
+        className="bg-cyan-100/75 fixed top-[0px] w-[100%] z-10 overflow-hidden"
       >
         <div className="mx-auto max-w-[1400px] px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
@@ -107,7 +112,7 @@ export default function Header() {
                       </span>
                     </div>
                     <div className="logout flex items-center rounded-lg hover:bg-white p-[5px]">
-                      <button onClick={() => dispatch(action.logout())}>
+                      <button onClick={handleLogout}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"

@@ -48,6 +48,15 @@ function AreaPopUp(props) {
             />
           </svg>
         </button>
+
+        <div className="w-[20%] mx-auto my-10">
+              <button
+                
+                className="w-full font-bold px-2 py-1 bg-red-500 rounded-lg hover:bg-red-700 hover:text-white"
+              >
+                OK
+              </button>
+            </div>
       </div>
     </div>
   );
