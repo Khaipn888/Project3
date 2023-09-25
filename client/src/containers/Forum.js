@@ -1,12 +1,14 @@
 import { Footer } from "../components/Footer";
 import Header from "../components/Header";
+import PostDetailInfo from "./PostDetailInfo";
 
 function Forum() {
     return (
         <div>
             <Header/>
-            <div className="h-[5000px] w-[100%] bg-red-500 relative ">
-                This is Forum page
+            
+            <div className=" w-full  relative mt-5 ">
+                <PostDetailInfo />
             </div>
             <Footer/>
         </div>

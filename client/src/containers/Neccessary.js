@@ -4,44 +4,54 @@ import { Footer } from "../components/Footer";
 import Header from "../components/Header";
 import PostPDInstance from "../components/PostPDInstance";
 import { useEffect, useState } from "react";
-import { getPostsLimit } from "../store/actions";
+import { getPosts, getPostsLimit } from "../store/actions";
 
 function Neccessary() {
+
+
+  const dispatch = useDispatch();
+  const PD = null;
   const [pageChosed, setPageChosed] = useState(1);
   const [page, setPage] = useState(0);
   const [pageIndex, setPageIndex] = useState(1);
+  const [result, setResult] = useState();
+  const { posts, count } = useSelector((state) => state.post);
+
+  useEffect(() => {
+    setResult([...posts]);
+  }, [posts]);
 
   const limit = 10;
-  const dispatch = useDispatch();
-  const { posts, count } = useSelector((state) => state.post);
-  const maxPageIndex =
-    (count % limit ? Math.floor(count / limit) + 1 : count / limit) % 3
-      ? Math.floor(
-          (count % limit ? Math.floor(count / limit) + 1 : count / limit) / 3
-        ) + 1
-      : (count % limit ? Math.floor(count / limit) + 1 : count / limit) / 3;
+  
+
+  // const maxPageIndex =
+  //   (count % limit ? Math.floor(count / limit) + 1 : count / limit) % 3
+  //     ? Math.floor(
+  //         (count % limit ? Math.floor(count / limit) + 1 : count / limit) / 3
+  //       ) + 1
+  //     : (count % limit ? Math.floor(count / limit) + 1 : count / limit) / 3;
   useEffect(() => {
-    dispatch(getPostsLimit(page, limit));
+    dispatch(getPosts());
   }, [dispatch, page]);
 
-  const handlePageNumber = () => {
-    let maxPage = count % limit ? Math.floor(count / limit) + 1 : count / limit;
-    console.log(maxPage);
-    let arrNumber = [];
-    for (let i = 1; i <= maxPage; i++) {
-      arrNumber.push(i);
-    }
+  // const handlePageNumber = () => {
+  //   let maxPage = count % limit ? Math.floor(count / limit) + 1 : count / limit;
+  //   console.log(maxPage);
+  //   let arrNumber = [];
+  //   for (let i = 1; i <= maxPage; i++) {
+  //     arrNumber.push(i);
+  //   }
 
-    return arrNumber.length > 3
-      ? arrNumber.filter((i) => i > 3 * (pageIndex - 1) && i <= 3 * pageIndex)
-      : arrNumber;
-  };
+  //   return arrNumber.length > 3
+  //     ? arrNumber.filter((i) => i > 3 * (pageIndex - 1) && i <= 3 * pageIndex)
+  //     : arrNumber;
+  // };
 
-  const handleChosePageNumber = (e) => {
-    setPageChosed(e.target.value);
-    setPage(e.target.value - 1);
-  };
-
+  // const handleChosePageNumber = (e) => {
+  //   setPageChosed(e.target.value);
+  //   setPage(e.target.value - 1);
+  // };
+console.log(result);
   return (
     <div>
       <Header />
@@ -68,9 +78,9 @@ function Neccessary() {
           </svg>
         </button>
       </div>
-      <div className=" grid grid-cols-5 w-[90%] mx-auto mt-[100px] gap-x-4 gap-y-4">
-        {posts?.length > 0 &&
-          posts.map((item) => (
+      <div className=" grid grid-cols-5 w-[90%] mx-auto mt-[100px] gap-x-4 gap-y-4 min-h-screen">
+        {result?.filter(item => item.category === PD)?.length > 0 &&
+          result?.filter(item => item.category === PD)?.map((item) => (
             <div className=" max-w-[100%] min-w-[90%] h-[350px] ">
               <PostPDInstance
                 key={item.id}
@@ -86,7 +96,7 @@ function Neccessary() {
             </div>
           ))}
       </div>
-      <div className="flex items-center justify-center mt-[20px]">
+      {/* <div className="flex items-center justify-center mt-[20px]">
         <div className="flex items-center justufy-center gap-1">
           {maxPageIndex > 1 && pageIndex > 1 && (
             <div
@@ -150,7 +160,7 @@ function Neccessary() {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
       <div className="h-[100px] bg-yelow-400  "></div>
       <BackToTopButton />
       <Footer />
