@@ -7,8 +7,8 @@ function Forum() {
         <div>
             <Header/>
             
-            <div className=" w-full  relative mt-5 ">
-                <PostDetailInfo />
+            <div className=" w-full h-[500px]  relative mt-5 ">
+               
             </div>
             <Footer/>
         </div>
